@@ -44,7 +44,7 @@ export default function Settings() {
     setSaving(true)
     try {
       const token = useAuthStore.getState().token
-      const res = await fetch(`${API_URL}/users/${user.id}`, {
+      const res = await fetch(`${API_URL}/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

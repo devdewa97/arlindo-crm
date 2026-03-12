@@ -498,11 +498,20 @@ export const useUserStore = create((set, get) => ({
       },
       body: JSON.stringify(userData)
     })
+    const clone = res.clone()
+    console.log('User create response:', res.status, res.statusText)
+    const text = await clone.text()
+    console.log('Response body:', text)
+    
     if (res.ok) {
       get().fetchUsers()
+      return true
+    } else {
+      console.error('User create FAILED:', res.status, text)
+      return false
     }
-    return res.ok
   },
+
 
   updateUser: async (id, userData) => {
     const token = useAuthStore.getState().token

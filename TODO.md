@@ -1,14 +1,12 @@
-# TODO - CRM Fixes
+# Fix Login Issue for New Users After Password Change
 
-## Tasks
-- [x] 1. Install required packages (xlsx, jspdf, jspdf-autotable)
-- [x] 2. Create export utility functions (Excel & PDF)
-- [x] 3. Update Leads.jsx with working export buttons (dropdown)
-- [x] 4. Update Reports.jsx with working export buttons
-- [ ] 5. Test lead creation functionality
-
-## Notes
-- Lead creation issue: This is usually because the server is not running. Make sure to start the server with `npm start` in the server folder.
-- Export functions work client-side using xlsx and jspdf libraries
-- Both Leads and Reports pages now have working Excel and PDF export buttons
+## Steps:
+- [x] 1. Plan approved by user
+- [x] 2. Add debug logging to server.js change-password and login endpoints ✓
+- [ ] 3. User restarts server and tests create user → login → change password → relogin (confirmed initial login works, fails after PW change)
+- [ ] 4. Analyze server console logs during failed attempts
+- [ ] 5. Fix root cause based on logs (likely user error or bcrypt issue)
+- [ ] 6. Remove debug logs
+- [ ] 7. Test complete flow
+- [ ] 8. attempt_completion
 

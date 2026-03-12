@@ -3,24 +3,23 @@
   "version": "1.0.0",
   "description": "ARLINDO DIGITAL CRM - Campus Marketing CRM",
   "private": true,
+
+  "engines": {
+    "node": "20.x"
+  },
+
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server/server.js",
     "client": "cd client && npm run dev",
     "install:all": "npm install && cd client && npm install && cd ../server && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm install && npm run build"
   },
-  "keywords": [
-    "crm",
-    "react",
-    "nodejs",
-    "express"
-  ],
-  "author": "Mas Dewa",
-  "license": "MIT",
+
   "dependencies": {
     "concurrently": "^8.2.2"
   },
+
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.4",
     "vite": "^7.3.1"

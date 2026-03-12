@@ -90,10 +90,15 @@ const logActivity = (leadId, userId, action, description) => {
 // Login
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
+  console.log(`[LOGIN] Attempt for username: "${username}", password length: ${password ? password.length : 0}`);
   const db = getDb();
   
-  const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
-  if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+  const user = db.prepare('SELECT id, username, name, role FROM users WHERE username = ?').get(username);
+  console.log(`[LOGIN] User found: ${user ? `${user.username} (ID:${user.id}, role:${user.role})` : 'NOT FOUND'}`);
+  if (!user) {
+    console.log('[LOGIN] Invalid username');
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
 
   const validPassword = bcrypt.compareSync(password, user.password);
   if (!validPassword) return res.status(401).json({ error: 'Invalid credentials' });
@@ -133,14 +138,20 @@ app.post('/api/auth/change-password', authenticate, (req, res) => {
   }
   
   // Verify current password
+  console.log(`[CHANGE-PW] User ${req.user.username} (ID:${req.user.id}) changing password. Current PW len: ${currentPassword.length}, Stored hash len: ${user.password.length}`);
+  console.log(`[CHANGE-PW] Stored hash starts with: ${user.password.substring(0, 20)}...`);
   const validPassword = bcrypt.compareSync(currentPassword, user.password);
+  console.log(`[CHANGE-PW] bcrypt.compare result: ${validPassword}`);
   if (!validPassword) {
-    return res.status(400).json({ error: 'Password lama tidak正确' });
+    console.log('[CHANGE-PW] Invalid current password');
+    return res.status(400).json({ error: 'Password lama tidak benar' });
   }
   
   // Update password
   const hashedPassword = bcrypt.hashSync(newPassword, 10);
+  console.log(`[CHANGE-PW] New hash: ${hashedPassword.substring(0, 20)}...`);
   db.prepare('UPDATE users SET password = ? WHERE id = ?').run(hashedPassword, req.user.id);
+  console.log('[CHANGE-PW] Password updated successfully');
   
   res.json({ success: true, message: 'Password berhasil diubah' });
 });

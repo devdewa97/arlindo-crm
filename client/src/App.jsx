@@ -43,23 +43,24 @@ function Footer() {
 
 // Layout Component
 function Layout() {
-  const [showNewLeadModal, setShowNewLeadModal] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
 
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
       
       {/* Main Content Area */}
-      <div className="lg:pl-72">
+      <div className="lg:pl-60">
         {/* Navbar */}
-        <Navbar onNewLead={() => setShowNewLeadModal(true)} />
+        <Navbar toggleMobileMenu={toggleMobileMenu} />
         
         {/* Page Content */}
-        <main className="pt-16 min-h-[calc(100vh-4rem)]">
+        <main className="pt-16 lg:pt-20 min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)]">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/leads" element={<Leads onNewLead={() => setShowNewLeadModal(true)} />} />
+            <Route path="/leads" element={<Leads />} />
             <Route path="/leads/:id" element={<LeadDetail />} />
             <Route path="/pipeline" element={<Pipeline />} />
             <Route path="/tasks" element={<Tasks />} />

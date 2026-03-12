@@ -59,7 +59,7 @@ export default function Login() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm mb-6">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <span>Software CRM #1 untuk Campus</span>
+              <span>Smart Digital Platform for Higher Education</span>
             </div>
 
             {/* Main Headline - Montserrat Black */}
@@ -68,7 +68,7 @@ export default function Login() {
                 Kelola Lead, Follow-Up Otomatis,<br/>
                 <span className="text-white drop-shadow-lg">dan Tingkatkan Konversi Mahasiswa</span>
               </h2>
-              <p className="text-xl text-white/90 leading-relaxed max-w-lg">
+              <p className="text-xl text-white/90 leading-relaxed w-full">
                 Tingkatkan efektivitas tim marketing hingga 10x dengan sistem CRM yang dirancang khusus untuk pengelolaan lead calon mahasiswa, otomatisasi komunikasi WhatsApp, dan analitik konversi.
               </p>
             </div>

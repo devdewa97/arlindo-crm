@@ -9,13 +9,18 @@ const { v4: uuidv4 } = require('uuid');
 const { initDb, getDb } = require('./database');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const JWT_SECRET = 'arlindo-crm-secret-key-2026';
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Route untuk cek server
+app.get("/", (req, res) => {
+  res.send("ARLINDO CRM API RUNNING");
+});
 
 // Ensure uploads directory exists
 const uploadsDir = path.join(__dirname, 'uploads');

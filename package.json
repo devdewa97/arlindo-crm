@@ -1,0 +1,20 @@
+{
+  "name": "arlindo-digital-crm",
+  "version": "1.0.0",
+  "description": "ARLINDO DIGITAL CRM - Campus Marketing CRM",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/server.js",
+    "client": "cd client && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build"
+  },
+  "keywords": ["crm", "react", "nodejs", "express"],
+  "author": "Mas Dewa",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+

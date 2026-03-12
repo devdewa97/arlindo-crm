@@ -10,11 +10,18 @@
     "install:all": "npm install && cd client && npm install && cd ../server && npm install",
     "build": "cd client && npm run build"
   },
-  "keywords": ["crm", "react", "nodejs", "express"],
+  "keywords": [
+    "crm",
+    "react",
+    "nodejs",
+    "express"
+  ],
   "author": "Mas Dewa",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
   }
 }
-
